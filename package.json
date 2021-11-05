@@ -1,0 +1,23 @@
+{
+  "name": "tinylazyseq",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Tiny generator-based lazy sequence implementation. Loosely inspired by the Kotlin Sequences implementation and the JavaScript Array API.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && npx typedoc ./index.ts --out docs/"
+  },
+  "keywords": [
+    "lazy",
+    "sequence",
+    "generators",
+    "iterable"
+  ],
+  "author": "maruseron",
+  "license": "MIT",
+  "devDependencies": {
+    "typedoc": "^0.22.7",
+    "typedoc-theme-dark": "^0.0.5"
+  }
+}
