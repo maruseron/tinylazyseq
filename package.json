@@ -1,7 +1,7 @@
 {
   "name": "tinylazyseq",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tiny generator-based lazy sequence implementation. Loosely inspired by the Kotlin Sequences implementation and the JavaScript Array API.",
   "main": "./dist/index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/maruseron/tinylazyseq#readme",
   "bugs": {
-    "url" : "https://github.com/maruseron/tinylazyseq/issues",
-    "email" : "marcelorodfu@gmail.com"
+    "url": "https://github.com/maruseron/tinylazyseq/issues",
+    "email": "marcelorodfu@gmail.com"
   },
   "devDependencies": {
     "typedoc": "^0.22.7",
