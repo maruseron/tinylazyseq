@@ -72,14 +72,14 @@ There are multiple ways of defining a sequence, but the two most commonly used a
 ### `Sequence.of<T>(...args: T[]): Sequence<T>`
 Creates a lazy sequence containing the provided arguments.
 ```ts
-import Sequence from "tinylazyseq";
+import { Sequence } from "tinylazyseq";
 Sequence.of(1, 2, 3, 4, 5);
 ```
 
 ### `Sequence.from<T>(iterable: Iterable<T>): Sequence<T>`
 Creates a lazy sequence wrapping the provided iterable.
 ```ts
-import Sequence from "tinylazyseq";
+import { Sequence } from "tinylazyseq";
 const data = getSomeIterableData();
 Sequence.from(data);
 ```
