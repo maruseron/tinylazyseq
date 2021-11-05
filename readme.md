@@ -3,17 +3,14 @@
 Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand.
 
 ## Tiny note of warning:
----
 Although I couldn't find any errors before publishing this project, I have not intensely tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I'll publish a patch as soon as I can. This warning will stay here until I feel the library is perfectly safe _or_ I finally make a test suite for it.
 
 ## Getting Started
----
 To add TinyLazySeq to your project, just run the following command in your project folder:
 ```
 npm install tinylazyseq
 ```
 ## Laziness
----
 The key difference between sequences and other iterables is their laziness - because of their lazy nature, sequences will do the minimal amount of work necessary to produce results, computing them on demand instead of eagerly producing the entire output.\
 The drawback to this is that, overall, sequences are less performant than an eager collection when consuming the entire input. The advantage, however, is that lazy sequences won't halt the result production while all values get computed. To better explain what I mean, here's an example in pseudocode:
 ```js
@@ -70,7 +67,6 @@ seq.forEach(print)
 ```
 At this point, I hope I have done a good enough job of explaining the power of lazy sequences and intermediate operations. The List approach had all values immediately available after 15 operations, while the Sequence approach had the first value as soon as 3 operations.
 ## Factories
----
 There are multiple ways of defining a sequence, but the two most commonly used are:
 
 ### `Sequence.of<T>(...args: T[]): Sequence<T>`
@@ -91,7 +87,6 @@ Sequence.from(data);
 Since the rest of Sequence factories are as straightforward as these, I think the inline docs do a good enough job of explaining how they work.
 
 ## API
----
 A full description of all methods can be found in the following link:
 
 The Sequence API is very similar to the Array API, so if you know how to use a functional approach with a JavaScript array, you pretty much already know how to use a Sequence. Here's a comparison table between Array and Sequence:
@@ -151,5 +146,4 @@ The Sequence API is very similar to the Array API, so if you know how to use a f
 <font size="1">\* since Sequences describe possibly unsized and/or infinite collections, it is impossible to have a length property. Instead, sequences try to infer the size of the underlying collection from their available information (eg. the collection implements size or length), providing the size if they do so succesfully, or an integer smaller than zero if the size is unknown.</font>
 
 ## Contact
-
 I'm easily contactable through Discord as maruseron#4476. Not really active anywhere else.
