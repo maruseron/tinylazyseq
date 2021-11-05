@@ -8,24 +8,24 @@ export class Sequence<T> implements Iterable<T> {
      * The underlying Iterable contained by this sequence. The values are dispatched
      * through its iterator, so any type implementing the iterator symbol is fine.
      */
-    readonly #values: Iterable<T>;
+    private readonly _values: Iterable<T>;
     /**
      * A cached size for sequences with available size information (eg. sequences made from an 
      * iterable, or sequences mapped from an already sized sequence). Less than 0 for 
      * non-deterministically sized sequences, like FilterSequences.
      */
-    readonly #size: number;
+    private readonly _size: number;
     private constructor(iterable: Iterable<T>, size?: number) {
-        this.#values = iterable;
+        this._values = iterable;
         if (size !== undefined) {
-            this.#size = size;
+            this._size = size;
         } else {
             if (isLenghted(iterable)) {
-                this.#size = iterable.length;
+                this._size = iterable.length;
             } else if (isSized(iterable)) {
-                this.#size = iterable.size;
+                this._size = iterable.size;
             }
-            else this.#size = -1;
+            else this._size = -1;
         }
     }
 
@@ -83,18 +83,18 @@ export class Sequence<T> implements Iterable<T> {
     public concat(other: Sequence<T>): Sequence<T> {
         return new (class ConcatSequence extends Sequence<T> {
             constructor(iterable: Iterable<T>, size: number) {
-                if (size < 0 || other.#size < 0) { super(iterable, -1); } 
-                else { super(iterable, size + other.#size); }
+                if (size < 0 || other._size < 0) { super(iterable, -1); } 
+                else { super(iterable, size + other._size); }
             }
             override *[Symbol.iterator]() {
-                for (const item of this.#values) {
+                for (const item of this._values) {
                     yield item;
                 }
-                for (const item of other.#values) {
+                for (const item of other._values) {
                     yield item;
                 }
             }
-        })(this, this.#size);
+        })(this, this._size);
     }
 
     /**
@@ -159,13 +159,13 @@ export class Sequence<T> implements Iterable<T> {
             }
             override *[Symbol.iterator]() {
                 let dropped = 0;
-                for (const item of this.#values) {
+                for (const item of this._values) {
                     if (dropped++ >= n) {
                         yield item;
                     }
                 }
             }
-        })(this, this.#size);
+        })(this, this._size);
     }
 
     /**
@@ -181,7 +181,7 @@ export class Sequence<T> implements Iterable<T> {
             override *[Symbol.iterator]() {
                 let yielding = false;
                 let index = 0;
-                for (const item of this.#values) {
+                for (const item of this._values) {
                     if (!predicate(item, index++)) yielding = true;
                     if (yielding) yield item;
                 }
@@ -232,7 +232,7 @@ export class Sequence<T> implements Iterable<T> {
         return new (class FilterSequence extends Sequence<T> {
             override *[Symbol.iterator]() {
                 let index = 0;
-                for (const value of this.#values) {
+                for (const value of this._values) {
                     if (predicate(value, index++)) yield value;
                 }
             }
@@ -313,7 +313,7 @@ export class Sequence<T> implements Iterable<T> {
     public flatten<T>(this: Sequence<Sequence<T>>): Sequence<T> {
         return new (class FlatteningSequence extends Sequence<T> {
             override *[Symbol.iterator]() {
-                for (const value of this.#values) {
+                for (const value of this._values) {
                     yield *value as any;
                 }
             }
@@ -332,7 +332,7 @@ export class Sequence<T> implements Iterable<T> {
         return new (class FlatMapSequence extends Sequence<U> { 
             override *[Symbol.iterator]() {
                 let index = 0;
-                for (const value of this.#values) {
+                for (const value of this._values) {
                     yield *transform(value as any, index++);
                 }
             }
@@ -463,11 +463,11 @@ export class Sequence<T> implements Iterable<T> {
         return new (class MapSequence extends Sequence<U> { 
             override *[Symbol.iterator]() {
                 let index = 0;
-                for (const value of this.#values) {
+                for (const value of this._values) {
                     yield transform(value as any, index++);
                 }
             }
-        })(this as any, this.#size);
+        })(this as any, this._size);
     }
 
     /**
@@ -492,7 +492,7 @@ export class Sequence<T> implements Iterable<T> {
      * collection (by implementing a length or size property). Otherwise, returns a negative number.
      */
     public size(): number {
-        return this.#size;
+        return this._size;
     }
 
     /**
@@ -521,17 +521,18 @@ export class Sequence<T> implements Iterable<T> {
         return new (class TakeSequence extends Sequence<T> {
             override *[Symbol.iterator]() {
                 let taken = 0;
-                for (const item of this.#values) {
+                for (const item of this._values) {
                     if (taken++ < n) {
                         yield item;
                     }
+                    else break;
                 }
             }
         })(this, 
-            this.#size < 0          // if the current sequence is of unknown size,
-                ? this.#size        // the new sequence will also have unknown size.
-                : n > this.#size    // otherwise, if n is greater than the current size,
-                    ? this.#size    // 
+            this._size < 0          // if the current sequence is of unknown size,
+                ? this._size        // the new sequence will also have unknown size.
+                : n > this._size    // otherwise, if n is greater than the current size,
+                    ? this._size    // 
                     : n
         );
     }
@@ -549,9 +550,10 @@ export class Sequence<T> implements Iterable<T> {
             override *[Symbol.iterator]() {
                 let yielding = true;
                 let index = 0;
-                for (const item of this.#values) {
+                for (const item of this._values) {
                     if (!predicate(item, index++)) yielding = false;
-                    if (yielding) yield item;
+                    if (!yielding) break;
+                    yield item;
                 }
             }
         })(this, -1);
@@ -582,7 +584,7 @@ export class Sequence<T> implements Iterable<T> {
      * Returns a generator yielding all values contained by this sequence.
      */
     *[Symbol.iterator](): Generator<T> {
-        for (const value of this.#values) yield value as any;
+        for (const value of this._values) yield value as any;
     }
 
     /**
