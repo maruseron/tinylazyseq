@@ -16,6 +16,14 @@
   ],
   "author": "maruseron",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/maruseron/tinylazyseq"
+  },
+  "homepage": "https://github.com/maruseron/tinylazyseq#readme",
+  "bugs": {
+    "url" : "https://github.com/maruseron/tinylazyseq/issues",
+    "email" : "marcelorodfu@gmail.com"
+  },
   "devDependencies": {
     "typedoc": "^0.22.7",
     "typedoc-theme-dark": "^0.0.5"
