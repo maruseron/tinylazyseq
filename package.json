@@ -1,7 +1,7 @@
 {
   "name": "tinylazyseq",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tiny generator-based lazy sequence implementation. Loosely inspired by the Kotlin Sequences implementation and the JavaScript Array API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
