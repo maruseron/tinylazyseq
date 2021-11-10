@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
+
     "target": "es6",
+
     "module": "es6",
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "lib": ["esnext", "esnext.AsyncIterable"],
+
     "declaration": true,
     "outDir": "./dist",
+
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

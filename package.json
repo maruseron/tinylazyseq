@@ -26,6 +26,7 @@
     "email": "marcelorodfu@gmail.com"
   },
   "devDependencies": {
+    "@types/node": "^16.11.7",
     "typedoc": "^0.22.7",
     "typedoc-theme-dark": "^0.0.5"
   }

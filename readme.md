@@ -69,19 +69,28 @@ At this point, I hope I have done a good enough job of explaining the power of l
 ## Factories
 There are multiple ways of defining a sequence, but the two most commonly used are:
 
-### `Sequence.of<T>(...args: T[]): Sequence<T>`
+#### `Async/Sequence.of<T>(...args: T[]): Sequence<T>`
 Creates a lazy sequence containing the provided arguments.
 ```ts
 import { Sequence } from "tinylazyseq";
 Sequence.of(1, 2, 3, 4, 5);
 ```
+or an asynchronous one instead:
+```ts
+import { AsyncSequence } from "tinylazyseq";
+AsyncSequence.of(promiseTask1(), promiseTask2(), promiseTask3());
+```
 
-### `Sequence.from<T>(iterable: Iterable<T>): Sequence<T>`
+#### `Async/Sequence.from<T>(iterable: Iterable<T>): Sequence<T>`
 Creates a lazy sequence wrapping the provided iterable.
 ```ts
 import { Sequence } from "tinylazyseq";
-const data = getSomeIterableData();
-Sequence.from(data);
+Sequence.from(getSomeIterableData());
+```
+or an asynchronous one instead
+```ts
+import { AsyncSequence } from "tinylazyseq";
+AsyncSequence.from(getSomePromiseArray());
 ```
 
 Since the rest of Sequence factories are as straightforward as these, I think the inline docs do a good enough job of explaining how they work.
