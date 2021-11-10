@@ -1,6 +1,6 @@
 # TinyLazySeq
 
-Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand. For more information, [here is the documentation](https://maruseron.github.io/tinylazyseq/classes/Sequence.html).
+Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand. For more information, [here is the documentation](https://maruseron.github.io/tinylazyseq/).
 
 ## Tiny note of warning:
 Although I couldn't find any errors before publishing this project, I have not intensely tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I'll publish a patch as soon as I can. This warning will stay here until I feel the library is perfectly safe _or_ I finally make a test suite for it.
@@ -96,7 +96,7 @@ AsyncSequence.from(getSomePromiseArray());
 Since the rest of Sequence factories are as straightforward as these, I think the inline docs do a good enough job of explaining how they work.
 
 ## API
-A full description of all methods can be found [here](https://maruseron.github.io/tinylazyseq/classes/Sequence.html).
+A full description of all methods can be found [here](https://maruseron.github.io/tinylazyseq/).
 
 The Sequence API is very similar to the Array API, so if you know how to use a functional approach with a JavaScript array, you pretty much already know how to use a Sequence. Here's a comparison table between Array and Sequence:
 
