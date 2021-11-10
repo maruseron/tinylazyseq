@@ -1,5 +1,6 @@
 index.ts
 docs/
 node_modules/
+src/
 tsconfig.json
 package-lock.json
