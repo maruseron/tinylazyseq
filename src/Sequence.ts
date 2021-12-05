@@ -40,12 +40,18 @@ export class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * Creates a lazy sequence wrapping the provided iterable.
-     * The sequence created is sized if the provided iterable has a `length` or `size` property.\
-     * Otherwise, size is less than 0 (unknown).
+     * Creates a lazy sequence wrapping the provided iterable or iterator.\
+     * If an `Iterable` is provided, the sequence created is sized, as long as the provided iterable 
+     * has a `length` or `size` property. Otherwise, size is less than 0 (unknown).\
+     * If an `Iterator` is provided, the sequence created is constrained to only one iteration and 
+     * unsized, as it is impossible to know the size ahead of time.
      */
-    public static from<T>(iterable: Iterable<T>): Sequence<T> {
-        return new Sequence(iterable);
+    public static from<T>(source: Iterable<T> | Iterator<T>): Sequence<T> {
+        if (Utils.isIterator(source)) {
+            return new ConstrainedSequence(source, -1);
+        } else {
+            return new Sequence(source);
+        }
     }
 
     /**
@@ -100,6 +106,14 @@ export class Sequence<T> implements Iterable<T> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns a new {@link Sequence} containing the elements in this sequence, constrained to only
+     * one iteration. 
+     */
+    public constrainOnce(): Sequence<T> {
+        return new ConstrainedSequence(this[Symbol.iterator](), this.size());
     }
 
     /**
@@ -539,6 +553,30 @@ class ConcatSequence<T> extends Sequence<T> {
     override *[Symbol.iterator]() {
         yield* this._values;
         yield* this.other["_values"]; // absolutely cursed. I know.
+    }
+}
+
+class ConstrainedSequence<T> extends Sequence<T> {
+    private readonly iterator: Iterator<T>;
+    private iterated: boolean = false;
+    constructor(iterator: Iterator<T>, size: number) {
+        super([], size);
+        this.iterator = iterator;
+    }
+
+    override *[Symbol.iterator]() {
+        if (this.iterated) { 
+            throw new Utils.IllegalStateError("attempted to iterate a constrained sequence more than once"); 
+        }
+        this.iterated = true;
+        let next = this.iterator.next();
+        while (!next.done) {
+            try {
+                yield next.value;
+            } finally {
+                next = this.iterator.next();
+            }
+        }
     }
 }
 

@@ -2,6 +2,9 @@ import { Utils } from "./Utils.js";
 
 // todo?: replace [a-z]*\s\|\sPromise<[a-z]*> with MaybePromise<[a-z]*>
 
+type AwaitableIterable<T> = Iterable<Promise<T>> | AsyncIterable<T>;
+type AwaitableIterator<T> = Iterator<Promise<T>> | AsyncIterator<T>;
+
 /**
  * Describes a lazily computed sequence of elements that can be asynchronously iterated over,
  * allowing for composition of intermediate operations in an efficient, on-demand execution order.
@@ -13,7 +16,7 @@ export class AsyncSequence<T> implements AsyncIterable<T> {
      * through its iterator, so any type implementing the asynciterator symbol or having Promises as
      * their parameterized type is fine.
      */
-     protected readonly _values: Iterable<Promise<T>> | AsyncIterable<T>;
+     protected readonly _values: AwaitableIterable<T>;
     /**
      * A cached size for sequences with available size information (eg. sequences made from a
      * sized iterable, or sequences mapped from an already sized sequence).\
@@ -24,7 +27,7 @@ export class AsyncSequence<T> implements AsyncIterable<T> {
      * sequences, like FilteringSequences.
      */
     protected readonly _size: number;
-    protected constructor(iterable: Iterable<Promise<T>> | AsyncIterable<T>, size?: number) {
+    protected constructor(iterable: AwaitableIterable<T>, size?: number) {
         this._values = iterable;
         if (size !== undefined) {
             this._size = size;
@@ -51,8 +54,12 @@ export class AsyncSequence<T> implements AsyncIterable<T> {
      * The sequence created is sized if the provided iterable has a `length` or `size` property.\
      * Otherwise, size is less than 0 (unknown).
      */
-    public static from<T>(iterable: Iterable<Promise<T>> | AsyncIterable<T>): AsyncSequence<T> {
-        return new AsyncSequence(iterable);
+    public static from<T>(source: AwaitableIterable<T> | AwaitableIterator<T>): AsyncSequence<T> {
+        if (Utils.isIterator<Promise<T>>(source)) {
+            return new AsyncConstrainedSequence(source, -1);
+        } else {
+            return new AsyncSequence(source as Iterable<Promise<T>> | AsyncIterable<T>);
+        }
     }
 
     /**
@@ -552,6 +559,30 @@ class AsyncConcatSequence<T> extends AsyncSequence<T> {
     override async *[Symbol.asyncIterator]() {
         yield* this._values;
         yield* this.other["_values"];
+    }
+}
+
+class AsyncConstrainedSequence<T> extends AsyncSequence<T> {
+    private readonly iterator: AwaitableIterator<T>;
+    private iterated: boolean = false;
+    constructor(iterator: AwaitableIterator<T>, size: number) {
+        super([], size);
+        this.iterator = iterator;
+    }
+
+    override async *[Symbol.asyncIterator]() {
+        if (this.iterated) {
+            throw new Utils.IllegalStateError("attempted to iterate a constrained sequence more than once");
+        }
+        this.iterated = true;
+        let next = await this.iterator.next();
+        while (!next.done) {
+            try {
+                yield next.value;
+            } finally {
+                next = await this.iterator.next();
+            }
+        }
     }
 }
 

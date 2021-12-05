@@ -1,6 +1,9 @@
-index.ts
+coverage/
 docs/
 node_modules/
 src/
-tsconfig.json
+index.ts
 package-lock.json
+tsconfig.json
+sequence.test.js
+utils.test.js

@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js && node node_modules/istanbul-badges-readme/lib/index.js -- --logo=jest",
     "build": "tsc && npx typedoc ./index.ts --out docs/"
   },
   "keywords": [
@@ -26,8 +26,19 @@
     "email": "marcelorodfu@gmail.com"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
+    "istanbul-badges-readme": "^1.7.0",
+    "jest": "^27.3.1",
     "typedoc": "^0.22.7",
     "typedoc-theme-dark": "^0.0.5"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "coverageReporters": [
+      "json-summary",
+      "text"
+    ]
   }
 }

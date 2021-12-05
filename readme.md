@@ -1,5 +1,8 @@
 # TinyLazySeq
 
+![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat&logo=jest) ![Branches](https://img.shields.io/badge/branches-98.43%25-brightgreen.svg?style=flat&logo=jest) ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat&logo=jest) ![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat&logo=jest) *
+<font size="1">\* Currently only Sequence and Utils classes count with testing. AsyncSequence testing is a bit trickier, so it will take longer.</font>
+
 Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand. For more information, [here is the documentation](https://maruseron.github.io/tinylazyseq/).
 
 ## Tiny note of warning:
@@ -10,6 +13,38 @@ To add TinyLazySeq to your project, just run the following command in your proje
 ```
 npm install tinylazyseq
 ```
+
+## New in This Version
+
+The first thing (and the one that took most to do) is that testing for `Sequence` and its `Utils` class, fully covered, has been added. If you're wondering about that 1.57% of all branches not covered, it's in the implementation of `findLastIndex`. I'm open to suggestions on how to test that.
+
+The other thing is that I've added support for Sequences made from iterators, as opposed to iterables:
+```ts
+const iterator = someCustomIterator();
+
+// this Sequence can only be iterated once
+const seq = Sequence.from(iterator);
+
+// we exhaust the Sequence through the forEach terminal operation
+seq.map(someTransform).filter(somePredicate).forEach(console.log);
+
+// calling another terminal operation results in an IllegalStateError
+seq.fold(initial, reducer); 
+//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once
+```
+
+Iterable derived Sequences can also be constrained to one iteration, in Kotlin Sequence fashion:
+```ts
+const seq = Sequence.from([1, 2, 3, 4, 5]).constrainOnce();
+
+// first() is terminal
+console.log("first item!", seq.first());
+
+// error, already consumed
+seq.forEach(consumer);
+//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once
+```
+
 ## Laziness
 The key difference between sequences and other iterables is their laziness - because of their lazy nature, sequences will do the minimal amount of work necessary to produce results, computing them on demand instead of eagerly producing the entire output.\
 The drawback to this is that, overall, sequences are less performant than an eager collection when consuming the entire input. The advantage, however, is that lazy sequences won't halt the result production while all values get computed. To better explain what I mean, here's an example in pseudocode:
