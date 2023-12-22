@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js && node node_modules/istanbul-badges-readme/lib/index.js -- --logo=jest",
-    "build": "tsc && npx typedoc ./index.ts --out docs/"
+    "build": "tsc && npx typedoc ./index.ts --readme ./readme.md --out docs/"
   },
   "keywords": [
     "lazy",
