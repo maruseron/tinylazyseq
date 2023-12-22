@@ -324,6 +324,19 @@ describe("Sequence", () => {
         });
     });
 
+    describe("groupBy", () => {
+        it("should group elements to a map by a selector function", () => {
+            const seq = Sequence.of(
+                { name: "María", grade: 5.0 }, 
+                { name: "Juan" , grade: 6.5 }, 
+                { name: "Pedro", grade: 3.7 },
+                { name: "María", grade: 7.0 })
+            const map = seq.groupBy(item => item.name);
+            expect(map).toBeInstanceOf(Map);
+            expect(map.get("María").length == 2);
+        });
+    });
+
     describe("indexOf", () => {
         it("should return the index of the value provided or -1", () => {
             const needle = { name: "bar" };
