@@ -1,9 +1,13 @@
 coverage/
 docs/
 node_modules/
-./src/
+src/
 index.ts
 package-lock.json
 tsconfig.json
 sequence.test.js
 utils.test.js
+
+# do NOT ignore dist/src
+
+!dist/src/
