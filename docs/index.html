@@ -1,86 +1,78 @@
-<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>tinylazyseq</title><meta name="description" content="Documentation for tinylazyseq"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">tinylazyseq</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>tinylazyseq</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
-<a href="#tinylazyseq" id="tinylazyseq" style="color: inherit; text-decoration: none;">
-  <h1>TinyLazySeq</h1>
-</a>
-<p><img src="https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat&logo=jest" alt="Statements"> <img src="https://img.shields.io/badge/branches-98.46%25-brightgreen.svg?style=flat&logo=jest" alt="Branches"> <img src="https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat&logo=jest" alt="Functions"> <img src="https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat&logo=jest" alt="Lines"> *
-<font size="1">* Currently only Sequence and Utils classes count with testing. AsyncSequence testing is a bit trickier, so it will take longer.</font></p>
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>tinylazyseq</title><meta name="description" content="Documentation for tinylazyseq"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">tinylazyseq</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>tinylazyseq</h1></div>
+<div class="tsd-panel tsd-typography"><h1 id="tinylazyseq" class="tsd-anchor-link">TinyLazySeq<a href="#tinylazyseq" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p><img src="https://img.shields.io/badge/statements-91.68%25-brightgreen.svg?style=flat&amp;logo=jest" alt="Statements"> <img src="https://img.shields.io/badge/branches-84.54%25-yellow.svg?style=flat&amp;logo=jest" alt="Branches"> <img src="https://img.shields.io/badge/functions-98.09%25-brightgreen.svg?style=flat&amp;logo=jest" alt="Functions"> <img src="https://img.shields.io/badge/lines-96.25%25-brightgreen.svg?style=flat&amp;logo=jest" alt="Lines"></p>
 <p>Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand. For more information, <a href="https://maruseron.github.io/tinylazyseq/">here is the documentation</a>.</p>
-
-<a href="#tiny-note-of-warning" id="tiny-note-of-warning" style="color: inherit; text-decoration: none;">
-  <h2>Tiny note of warning:</h2>
-</a>
-<p>Although I couldn&#39;t find any errors before publishing this project, I have not intensely tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I&#39;ll publish a patch as soon as I can. This warning will stay here until I feel the library is perfectly safe <em>or</em> I finally make a test suite for it.</p>
-
-<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-  <h2>Getting Started</h2>
-</a>
+<h2 id="tiny-note-of-warning" class="tsd-anchor-link">Tiny note of warning:<a href="#tiny-note-of-warning" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Although I couldn't find any errors before publishing this project, I have not extensively production-tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I'll publish a patch as soon as I can.</p>
+<h2 id="getting-started" class="tsd-anchor-link">Getting Started<a href="#getting-started" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>To add TinyLazySeq to your project, just run the following command in your project folder:</p>
 <pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">install</span><span class="hl-1"> </span><span class="hl-0">tinylazyseq</span>
-</code></pre>
+</code><button>Copy</button></pre>
 
-<a href="#new-in-this-version" id="new-in-this-version" style="color: inherit; text-decoration: none;">
-  <h2>New in This Version</h2>
-</a>
-<p>An instance method equivalent to the new <code>Map.groupBy</code> method in the <a href="https://github.com/tc39/proposal-array-grouping">stage 4 array grouping proposal</a> has been added:</p>
-<pre><code class="language-typescript"><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">seq</span><span class="hl-1"> = </span><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-4">of</span><span class="hl-1">(</span><br/><span class="hl-1">    { </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-5">&quot;María&quot;</span><span class="hl-1">, </span><span class="hl-0">grade:</span><span class="hl-1"> </span><span class="hl-6">5.0</span><span class="hl-1"> }, </span><br/><span class="hl-1">    { </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-5">&quot;Juan&quot;</span><span class="hl-1"> , </span><span class="hl-0">grade:</span><span class="hl-1"> </span><span class="hl-6">6.5</span><span class="hl-1"> }, </span><br/><span class="hl-1">    { </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-5">&quot;Pedro&quot;</span><span class="hl-1">, </span><span class="hl-0">grade:</span><span class="hl-1"> </span><span class="hl-6">3.7</span><span class="hl-1"> },</span><br/><span class="hl-1">    { </span><span class="hl-0">name:</span><span class="hl-1"> </span><span class="hl-5">&quot;María&quot;</span><span class="hl-1">, </span><span class="hl-0">grade:</span><span class="hl-1"> </span><span class="hl-6">7.0</span><span class="hl-1"> });</span><br/><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">groupBy</span><span class="hl-1">(</span><span class="hl-0">item</span><span class="hl-1"> </span><span class="hl-2">=&gt;</span><span class="hl-1"> </span><span class="hl-0">item</span><span class="hl-1">.</span><span class="hl-0">name</span><span class="hl-1">);</span><br/><span class="hl-7">/* ^ Map {</span><br/><span class="hl-7">         &quot;María&quot; =&gt; [ { &quot;name&quot;: &quot;María&quot;, &quot;grade&quot;: 7.0 }, { &quot;name&quot;: &quot;María&quot;, &quot;grade&quot;: 5.0 }],</span><br/><span class="hl-7">         &quot;Juan&quot;  =&gt; [ { &quot;name&quot;: &quot;Juan&quot; , &quot;grade&quot;: 6.5 } ],</span><br/><span class="hl-7">         &quot;Pedro&quot; =&gt; [ { &quot;name&quot;: &quot;Pedro&quot;, &quot;grade&quot;: 3.7 } ]</span><br/><span class="hl-7">     }</span><br/><span class="hl-7">*/</span>
-</code></pre>
-<p>However, no equivalent to the <code>Object.groupBy</code> method in the same proposal made it to the project. I consider using Objects as Maps very bad practice: frequent dynamic addition of keys degrades property access performance heavily, so one should try to mutate anonymous objects as little as possible. As such, I decided against adding the method.</p>
+<h2 id="new-in-this-version" class="tsd-anchor-link">New in This Version<a href="#new-in-this-version" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>First things first, I have finally finished <code>AsyncSequence</code>'s test suite, with full line coverage; the uncovered branches are direct results of transpilation.</p>
+<p>In terms of API, the following new methods have been added, to stay up to date with the JavaScript Array API. I trust their names are descriptive enough:</p>
+<pre><code class="ts"><span class="hl-2">// equivalent to Array.toSorted</span><br/><span class="hl-0">public</span><span class="hl-1"> </span><span class="hl-3">sorted</span><span class="hl-1">(): </span><span class="hl-0">Sequence</span><span class="hl-1">&lt;</span><span class="hl-4">T</span><span class="hl-1">&gt;;</span><br/><span class="hl-0">public</span><span class="hl-1"> </span><span class="hl-3">sorted</span><span class="hl-1">(</span><span class="hl-0">compareFn</span><span class="hl-1">: (</span><span class="hl-0">a</span><span class="hl-1">: </span><span class="hl-5">T</span><span class="hl-1">, </span><span class="hl-0">b</span><span class="hl-1">: </span><span class="hl-5">T</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> </span><span class="hl-0">number</span><span class="hl-1">): </span><span class="hl-0">Sequence</span><span class="hl-1">&lt;</span><span class="hl-4">T</span><span class="hl-1">&gt;;</span><br/><br/><span class="hl-2">// equivalent to Array.toReversed</span><br/><span class="hl-0">public</span><span class="hl-1"> </span><span class="hl-3">reversed</span><span class="hl-1">(): </span><span class="hl-0">Sequence</span><span class="hl-1">&lt;</span><span class="hl-4">T</span><span class="hl-1">&gt;;</span>
+</code><button type="button">Copy</button></pre>
 
-<a href="#laziness" id="laziness" style="color: inherit; text-decoration: none;">
-  <h2>Laziness</h2>
-</a>
-<p>The key difference between sequences and other iterables is their laziness - because of their lazy nature, sequences will do the minimal amount of work necessary to produce results, computing them on demand instead of eagerly producing the entire output.<br>The drawback to this is that, overall, sequences are less performant than an eager collection when consuming the entire input. The advantage, however, is that lazy sequences won&#39;t halt the result production while all values get computed. To better explain what I mean, here&#39;s an example in pseudocode:</p>
-<pre><code class="language-js"><span class="hl-2">var</span><span class="hl-1"> </span><span class="hl-0">range</span><span class="hl-1"> = </span><span class="hl-4">inclusiveRange</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">, </span><span class="hl-6">10</span><span class="hl-1">)</span><br/><br/><span class="hl-2">var</span><span class="hl-1"> </span><span class="hl-0">list</span><span class="hl-1"> = </span><span class="hl-0">range</span><span class="hl-1">.</span><span class="hl-4">toList</span><span class="hl-1">()</span><br/><span class="hl-2">var</span><span class="hl-1"> </span><span class="hl-0">seq</span><span class="hl-1">  = </span><span class="hl-0">range</span><span class="hl-1">.</span><span class="hl-4">toSequence</span><span class="hl-1">()</span><br/><br/><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-4">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> % </span><span class="hl-6">2</span><span class="hl-1"> == </span><span class="hl-6">0</span><span class="hl-1">).</span><span class="hl-4">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> * </span><span class="hl-0">num</span><span class="hl-1">)</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> % </span><span class="hl-6">2</span><span class="hl-1"> == </span><span class="hl-6">0</span><span class="hl-1">).</span><span class="hl-4">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> * </span><span class="hl-0">num</span><span class="hl-1">)</span>
-</code></pre>
-<p>These seemingly identical operations do, broadly, the same thing: they filter a collection of numbers from 1 to 10, keeping only even numbers, and then multiply those numbers by themselves. If we were to exhaust both collections with a forEach, we&#39;d get the same output:</p>
-<pre><code class="language-js"><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">) </span><span class="hl-7">// 4, 16, 36, 64, 100</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">)  </span><span class="hl-7">// 4, 16, 36, 64, 100</span>
-</code></pre>
+<p><font size="1">Equivalents for ArraySequence have also been implemented.</font></p>
+<h2 id="laziness" class="tsd-anchor-link">Laziness<a href="#laziness" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The key difference between sequences and other iterables is their laziness - because of their lazy nature, sequences will do the minimal amount of work necessary to produce results, computing them on demand instead of eagerly producing the entire output.<br>
+The drawback to this is that, overall, sequences are less performant than an eager collection when consuming the entire input. The advantage, however, is that lazy sequences won't halt the result production while all values get computed. To better explain what I mean, here's an example in pseudocode:</p>
+<pre><code class="js"><span class="hl-6">var</span><span class="hl-1"> </span><span class="hl-0">range</span><span class="hl-1"> = </span><span class="hl-3">inclusiveRange</span><span class="hl-1">(</span><span class="hl-7">1</span><span class="hl-1">, </span><span class="hl-7">10</span><span class="hl-1">)</span><br/><br/><span class="hl-6">var</span><span class="hl-1"> </span><span class="hl-0">list</span><span class="hl-1"> = </span><span class="hl-0">range</span><span class="hl-1">.</span><span class="hl-3">toList</span><span class="hl-1">()</span><br/><span class="hl-6">var</span><span class="hl-1"> </span><span class="hl-0">seq</span><span class="hl-1">  = </span><span class="hl-0">range</span><span class="hl-1">.</span><span class="hl-3">toSequence</span><span class="hl-1">()</span><br/><br/><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-3">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> % </span><span class="hl-7">2</span><span class="hl-1"> == </span><span class="hl-7">0</span><span class="hl-1">).</span><span class="hl-3">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> * </span><span class="hl-0">num</span><span class="hl-1">)</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> % </span><span class="hl-7">2</span><span class="hl-1"> == </span><span class="hl-7">0</span><span class="hl-1">).</span><span class="hl-3">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; </span><span class="hl-0">num</span><span class="hl-1"> * </span><span class="hl-0">num</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p>These seemingly identical operations do, broadly, the same thing: they filter a collection of numbers from 1 to 10, keeping only even numbers, and then multiply those numbers by themselves. If we were to exhaust both collections with a forEach, we'd get the same output:</p>
+<pre><code class="js"><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">) </span><span class="hl-2">// 4, 16, 36, 64, 100</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">)  </span><span class="hl-2">// 4, 16, 36, 64, 100</span>
+</code><button type="button">Copy</button></pre>
+
 <p>However, if we add a log to each operation, we can clearly see the different nature of both approaches:</p>
-<pre><code class="language-js"><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-4">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; { </span><br/><span class="hl-1">    </span><span class="hl-4">print</span><span class="hl-1">(</span><span class="hl-5">&quot;filtering&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num % 2 == 0 </span><br/><span class="hl-1">}).</span><span class="hl-4">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; {</span><br/><span class="hl-1">    </span><span class="hl-4">print</span><span class="hl-1">(</span><span class="hl-5">&quot;mapping&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num </span><span class="hl-2">*</span><span class="hl-1"> num</span><br/><span class="hl-1">})</span><br/><span class="hl-7">/** output:</span><br/><span class="hl-7"> * filtering, filtering, filtering, filtering, filtering</span><br/><span class="hl-7"> * filtering, filtering, filtering, filtering, filtering</span><br/><span class="hl-7"> * mapping, mapping, mapping, mapping, mapping</span><br/><span class="hl-7"> */</span><br/><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; { </span><br/><span class="hl-1">    </span><span class="hl-4">print</span><span class="hl-1">(</span><span class="hl-5">&quot;filtering&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num % 2 == 0 </span><br/><span class="hl-1">}).</span><span class="hl-4">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; {</span><br/><span class="hl-1">    </span><span class="hl-4">print</span><span class="hl-1">(</span><span class="hl-5">&quot;mapping&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num </span><span class="hl-2">*</span><span class="hl-1"> num</span><br/><span class="hl-1">})</span><br/><span class="hl-7">/** output:</span><br/><span class="hl-7"> * none</span><br/><span class="hl-7"> */</span><br/><br/><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">) </span><br/><span class="hl-7">// 4, 16, 36, 64, 100</span><br/><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">)</span><br/><span class="hl-7">/** output:</span><br/><span class="hl-7"> * filtering, filtering, mapping, 4</span><br/><span class="hl-7"> * filtering, filtering, mapping, 16</span><br/><span class="hl-7"> * filtering, filtering, mapping, 36 </span><br/><span class="hl-7"> * filtering, filtering, mapping, 64</span><br/><span class="hl-7"> * filtering, filtering, mapping, 100</span><br/><span class="hl-7"> */</span>
-</code></pre>
+<pre><code class="js"><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-3">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; { </span><br/><span class="hl-1">    </span><span class="hl-3">print</span><span class="hl-1">(</span><span class="hl-8">&quot;filtering&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num % 2 == 0 </span><br/><span class="hl-1">}).</span><span class="hl-3">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; {</span><br/><span class="hl-1">    </span><span class="hl-3">print</span><span class="hl-1">(</span><span class="hl-8">&quot;mapping&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num </span><span class="hl-6">*</span><span class="hl-1"> num</span><br/><span class="hl-1">})</span><br/><span class="hl-2">/** output:</span><br/><span class="hl-2"> * filtering, filtering, filtering, filtering, filtering</span><br/><span class="hl-2"> * filtering, filtering, filtering, filtering, filtering</span><br/><span class="hl-2"> * mapping, mapping, mapping, mapping, mapping</span><br/><span class="hl-2"> */</span><br/><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">filter</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; { </span><br/><span class="hl-1">    </span><span class="hl-3">print</span><span class="hl-1">(</span><span class="hl-8">&quot;filtering&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num % 2 == 0 </span><br/><span class="hl-1">}).</span><span class="hl-3">map</span><span class="hl-1">(</span><span class="hl-0">num</span><span class="hl-1"> -&gt; {</span><br/><span class="hl-1">    </span><span class="hl-3">print</span><span class="hl-1">(</span><span class="hl-8">&quot;mapping&quot;</span><span class="hl-1">)</span><br/><span class="hl-1">    return num </span><span class="hl-6">*</span><span class="hl-1"> num</span><br/><span class="hl-1">})</span><br/><span class="hl-2">/** output:</span><br/><span class="hl-2"> * none</span><br/><span class="hl-2"> */</span><br/><br/><span class="hl-0">list</span><span class="hl-1">.</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">) </span><br/><span class="hl-2">// 4, 16, 36, 64, 100</span><br/><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">print</span><span class="hl-1">)</span><br/><span class="hl-2">/** output:</span><br/><span class="hl-2"> * filtering, filtering, mapping, 4</span><br/><span class="hl-2"> * filtering, filtering, mapping, 16</span><br/><span class="hl-2"> * filtering, filtering, mapping, 36 </span><br/><span class="hl-2"> * filtering, filtering, mapping, 64</span><br/><span class="hl-2"> * filtering, filtering, mapping, 100</span><br/><span class="hl-2"> */</span>
+</code><button type="button">Copy</button></pre>
+
 <p>At this point, I hope I have done a good enough job of explaining the power of lazy sequences and intermediate operations. The List approach had all values immediately available after 15 operations, while the Sequence approach had the first value as soon as 3 operations.</p>
-
-<a href="#factories" id="factories" style="color: inherit; text-decoration: none;">
-  <h2>Factories</h2>
-</a>
+<h2 id="factories" class="tsd-anchor-link">Factories<a href="#factories" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>There are multiple ways of defining a sequence, but the two most commonly used are:</p>
-
-<a href="#asyncsequenceoflttgtargs-t-sequencelttgt" id="asyncsequenceoflttgtargs-t-sequencelttgt" style="color: inherit; text-decoration: none;">
-  <h4><code>Async/Sequence.of&lt;T&gt;(...args: T[]): Sequence&lt;T&gt;</code></h4>
-</a>
+<h4 id="_" class="tsd-anchor-link"><code>Async/Sequence.of&lt;T&gt;(...args: T[]): Sequence&lt;T&gt;</code><a href="#_" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4>
 <p>Creates a lazy sequence containing the provided arguments.</p>
-<pre><code class="language-ts"><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-0">Sequence</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-5">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-4">of</span><span class="hl-1">(</span><span class="hl-6">1</span><span class="hl-1">, </span><span class="hl-6">2</span><span class="hl-1">, </span><span class="hl-6">3</span><span class="hl-1">, </span><span class="hl-6">4</span><span class="hl-1">, </span><span class="hl-6">5</span><span class="hl-1">);</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-0">Sequence</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-8">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-3">of</span><span class="hl-1">(</span><span class="hl-7">1</span><span class="hl-1">, </span><span class="hl-7">2</span><span class="hl-1">, </span><span class="hl-7">3</span><span class="hl-1">, </span><span class="hl-7">4</span><span class="hl-1">, </span><span class="hl-7">5</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
 <p>or an asynchronous one instead:</p>
-<pre><code class="language-ts"><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-0">AsyncSequence</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-5">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">AsyncSequence</span><span class="hl-1">.</span><span class="hl-4">of</span><span class="hl-1">(</span><span class="hl-4">promiseTask1</span><span class="hl-1">(), </span><span class="hl-4">promiseTask2</span><span class="hl-1">(), </span><span class="hl-4">promiseTask3</span><span class="hl-1">());</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-0">AsyncSequence</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-8">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">AsyncSequence</span><span class="hl-1">.</span><span class="hl-3">of</span><span class="hl-1">(</span><span class="hl-3">promiseTask1</span><span class="hl-1">(), </span><span class="hl-3">promiseTask2</span><span class="hl-1">(), </span><span class="hl-3">promiseTask3</span><span class="hl-1">());</span>
+</code><button type="button">Copy</button></pre>
 
-<a href="#asyncsequencefromlttgtiterable-iterablelttgt-sequencelttgt" id="asyncsequencefromlttgtiterable-iterablelttgt-sequencelttgt" style="color: inherit; text-decoration: none;">
-  <h4><code>Async/Sequence.from&lt;T&gt;(iterable: Iterable&lt;T&gt;): Sequence&lt;T&gt;</code></h4>
-</a>
+<h4 id="_-1" class="tsd-anchor-link"><code>Async/Sequence.from&lt;T&gt;(iterable: Iterable&lt;T&gt;): Sequence&lt;T&gt;</code><a href="#_-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h4>
 <p>Creates a lazy sequence wrapping the provided iterable.</p>
-<pre><code class="language-ts"><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-0">Sequence</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-5">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-4">from</span><span class="hl-1">(</span><span class="hl-4">getSomeIterableData</span><span class="hl-1">());</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-0">Sequence</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-8">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-3">from</span><span class="hl-1">(</span><span class="hl-3">getSomeIterableData</span><span class="hl-1">());</span>
+</code><button type="button">Copy</button></pre>
+
 <p>or an asynchronous one instead</p>
-<pre><code class="language-ts"><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-0">AsyncSequence</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-5">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">AsyncSequence</span><span class="hl-1">.</span><span class="hl-4">from</span><span class="hl-1">(</span><span class="hl-4">getSomePromiseArray</span><span class="hl-1">());</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-9">import</span><span class="hl-1"> { </span><span class="hl-0">AsyncSequence</span><span class="hl-1"> } </span><span class="hl-9">from</span><span class="hl-1"> </span><span class="hl-8">&quot;tinylazyseq&quot;</span><span class="hl-1">;</span><br/><span class="hl-0">AsyncSequence</span><span class="hl-1">.</span><span class="hl-3">from</span><span class="hl-1">(</span><span class="hl-3">getSomePromiseArray</span><span class="hl-1">());</span>
+</code><button type="button">Copy</button></pre>
+
 <p>Since the rest of Sequence factories are as straightforward as these, I think the inline docs do a good enough job of explaining how they work.</p>
-
-<a href="#single-iteration-constraints" id="single-iteration-constraints" style="color: inherit; text-decoration: none;">
-  <h2>Single Iteration Constraints</h2>
-</a>
+<h2 id="single-iteration-constraints" class="tsd-anchor-link">Single Iteration Constraints<a href="#single-iteration-constraints" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>TinyLazySeq supports Sequences made from iterators, as opposed to iterables, which can only be consumed once:</p>
-<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">iterator</span><span class="hl-1"> = </span><span class="hl-4">someCustomIterator</span><span class="hl-1">();</span><br/><br/><span class="hl-7">// this Sequence can only be iterated once</span><br/><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">seq</span><span class="hl-1"> = </span><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-4">from</span><span class="hl-1">(</span><span class="hl-0">iterator</span><span class="hl-1">);</span><br/><br/><span class="hl-7">// we exhaust the Sequence through the forEach terminal operation</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">map</span><span class="hl-1">(</span><span class="hl-0">someTransform</span><span class="hl-1">).</span><span class="hl-4">filter</span><span class="hl-1">(</span><span class="hl-0">somePredicate</span><span class="hl-1">).</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">);</span><br/><br/><span class="hl-7">// calling another terminal operation results in an IllegalStateError</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">fold</span><span class="hl-1">(</span><span class="hl-0">initial</span><span class="hl-1">, </span><span class="hl-0">reducer</span><span class="hl-1">); </span><br/><span class="hl-7">//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once</span>
-</code></pre>
-<p>Iterable derived Sequences can also be constrained to one iteration, in Kotlin Sequence fashion:</p>
-<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">seq</span><span class="hl-1"> = </span><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-4">from</span><span class="hl-1">([</span><span class="hl-6">1</span><span class="hl-1">, </span><span class="hl-6">2</span><span class="hl-1">, </span><span class="hl-6">3</span><span class="hl-1">, </span><span class="hl-6">4</span><span class="hl-1">, </span><span class="hl-6">5</span><span class="hl-1">]).</span><span class="hl-4">constrainOnce</span><span class="hl-1">();</span><br/><br/><span class="hl-7">// first() is terminal</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">&quot;first item!&quot;</span><span class="hl-1">, </span><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">first</span><span class="hl-1">());</span><br/><br/><span class="hl-7">// error, already consumed</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-4">forEach</span><span class="hl-1">(</span><span class="hl-0">consumer</span><span class="hl-1">);</span><br/><span class="hl-7">//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-4">iterator</span><span class="hl-1"> = </span><span class="hl-3">someCustomIterator</span><span class="hl-1">();</span><br/><br/><span class="hl-2">// this Sequence can only be iterated once</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-4">seq</span><span class="hl-1"> = </span><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-3">from</span><span class="hl-1">(</span><span class="hl-0">iterator</span><span class="hl-1">);</span><br/><br/><span class="hl-2">// we exhaust the Sequence through the forEach terminal operation</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">map</span><span class="hl-1">(</span><span class="hl-0">someTransform</span><span class="hl-1">).</span><span class="hl-3">filter</span><span class="hl-1">(</span><span class="hl-0">somePredicate</span><span class="hl-1">).</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">);</span><br/><br/><span class="hl-2">// calling another terminal operation results in an IllegalStateError</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">fold</span><span class="hl-1">(</span><span class="hl-0">initial</span><span class="hl-1">, </span><span class="hl-0">reducer</span><span class="hl-1">); </span><br/><span class="hl-2">//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once</span>
+</code><button type="button">Copy</button></pre>
 
-<a href="#api" id="api" style="color: inherit; text-decoration: none;">
-  <h2>API</h2>
-</a>
+<p>Iterable derived Sequences can also be constrained to one iteration, in Kotlin Sequence fashion:</p>
+<pre><code class="ts"><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-4">seq</span><span class="hl-1"> = </span><span class="hl-0">Sequence</span><span class="hl-1">.</span><span class="hl-3">from</span><span class="hl-1">([</span><span class="hl-7">1</span><span class="hl-1">, </span><span class="hl-7">2</span><span class="hl-1">, </span><span class="hl-7">3</span><span class="hl-1">, </span><span class="hl-7">4</span><span class="hl-1">, </span><span class="hl-7">5</span><span class="hl-1">]).</span><span class="hl-3">constrainOnce</span><span class="hl-1">();</span><br/><br/><span class="hl-2">// first() is terminal</span><br/><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-8">&quot;first item!&quot;</span><span class="hl-1">, </span><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">first</span><span class="hl-1">());</span><br/><br/><span class="hl-2">// error, already consumed</span><br/><span class="hl-0">seq</span><span class="hl-1">.</span><span class="hl-3">forEach</span><span class="hl-1">(</span><span class="hl-0">consumer</span><span class="hl-1">);</span><br/><span class="hl-2">//  ^ IllegalStateError: attempted to iterate a constrained sequence more than once</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="api" class="tsd-anchor-link">API<a href="#api" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>A full description of all methods can be found <a href="https://maruseron.github.io/tinylazyseq/">here</a>.</p>
-<p>The Sequence API is very similar to the Array API, so if you know how to use a functional approach with a JavaScript array, you pretty much already know how to use a Sequence. Here&#39;s a comparison table between Array and Sequence:</p>
+<p>The Sequence API is very similar to the Array API, so if you know how to use a functional approach with a JavaScript array, you pretty much already know how to use a Sequence. Here's a comparison table between Array and Sequence:</p>
 <table>
 <thead>
 <tr>
@@ -89,7 +81,8 @@
 <th>Sequence</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>length</td>
 <td>yes</td>
 <td>no*</td>
@@ -267,12 +260,17 @@
 <tr>
 <td>reduceRight</td>
 <td>yes</td>
-<td>no, can&#39;t be iterated backwards</td>
+<td>no, can't be iterated backwards</td>
 </tr>
 <tr>
 <td>reverse</td>
 <td>yes</td>
 <td>no, immutable</td>
+</tr>
+<tr>
+<td>reversed</td>
+<td>no, but toReversed</td>
+<td>yes</td>
 </tr>
 <tr>
 <td>shift</td>
@@ -300,6 +298,11 @@
 <td>no, immutable</td>
 </tr>
 <tr>
+<td>sorted</td>
+<td>no, but toSorted</td>
+<td>yes</td>
+</tr>
+<tr>
 <td>splice</td>
 <td>yes</td>
 <td>no, immutable</td>
@@ -320,6 +323,21 @@
 <td>no</td>
 </tr>
 <tr>
+<td>toReversed</td>
+<td>yes</td>
+<td>no, but reversed</td>
+</tr>
+<tr>
+<td>toSorted</td>
+<td>yes</td>
+<td>no, but sorted</td>
+</tr>
+<tr>
+<td>toSpliced</td>
+<td>yes</td>
+<td>no, but drop and take</td>
+</tr>
+<tr>
 <td>toString</td>
 <td>yes</td>
 <td>yes, but does not provide the values</td>
@@ -335,6 +353,11 @@
 <td>no</td>
 </tr>
 <tr>
+<td>with</td>
+<td>yes</td>
+<td>no, no random access</td>
+</tr>
+<tr>
 <td>Map.groupBy</td>
 <td>yes</td>
 <td>both: map static and instance method</td>
@@ -344,11 +367,45 @@
 <td>yes</td>
 <td>only object static (discouraged)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><font size="1">* since Sequences describe possibly unsized and/or infinite collections, it is impossible to have a length property. Instead, sequences try to infer the size of the underlying collection from their available information (eg. the collection implements size or length), providing the size if they do so succesfully, or an integer smaller than zero if the size is unknown.</font></p>
-
-<a href="#contact" id="contact" style="color: inherit; text-decoration: none;">
-  <h2>Contact</h2>
-</a>
-<p>I&#39;m easily contactable through Discord as maruseron. Not really active anywhere else.</p>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/AsyncSequence.html" class="tsd-kind-icon">Async<wbr/>Sequence</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/Sequence.html" class="tsd-kind-icon">Sequence</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<h2 id="contact" class="tsd-anchor-link">Contact<a href="#contact" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>I'm easily contactable through Discord as maruseron. Not really active anywhere else.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#tinylazyseq"><span>Tiny<wbr/>Lazy<wbr/>Seq</span></a>
+<ul>
+<li><a href="#tiny-note-of-warning"><span>Tiny note of warning:</span></a></li>
+<li><a href="#getting-started"><span>Getting <wbr/>Started</span></a></li>
+<li><a href="#new-in-this-version"><span>New in <wbr/>This <wbr/>Version</span></a></li>
+<li><a href="#laziness"><span>Laziness</span></a></li>
+<li><a href="#factories"><span>Factories</span></a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#_"><span></span></a></li>
+<li><a href="#_-1"><span></span></a></li></ul></li></ul></li>
+<li><a href="#single-iteration-constraints"><span>Single <wbr/>Iteration <wbr/>Constraints</span></a></li>
+<li><a href="#api"><span>API</span></a></li>
+<li><a href="#contact"><span>Contact</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html">tinylazyseq</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

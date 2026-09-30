@@ -320,7 +320,7 @@ describe("Sequence", () => {
             const fn = jest.fn();
             const seq = Sequence.of(1, 2, 3, 4, 5);
             expect(seq.forEach(fn)).toBeUndefined();
-            expect(fn).toBeCalledTimes(5);
+            expect(fn).toHaveBeenCalledTimes(5);
         });
     });
 
@@ -381,6 +381,10 @@ describe("Sequence", () => {
         it("should limit the amount of elements taken and use truncated when limit is specified", () => {
             expect(Sequence.generate(0, num => num + 1).take(20).join({ limit: 10 }))
                 .toBe("0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...");
+            expect(Sequence.of(1, 2, 3).join({ separator: " | " }))
+                .toBe("1 | 2 | 3");
+            expect(Sequence.of(1, 2, 3).join({ limit: 2, truncated: "(more)" }))
+                .toBe("1, 2, (more)");
         });
     });
 
@@ -421,6 +425,20 @@ describe("Sequence", () => {
         it("should default to null for empty sequences", () => {
             const seq = Sequence.empty();
             expect(seq.reduce((acc, item) => acc + item)).toBeNull();
+        });
+    });
+
+    describe("reversed", () => {
+        it("should reverse the elements and retain known size", () => {
+            const reversed = Sequence.of(1, 2, 3).reversed();
+            expect(reversed.toArray()).toEqual([3, 2, 1]);
+            expect(reversed.size()).toBe(3);
+        });
+
+        it("should retain unknown size", () => {
+            const reversed = Sequence.generate(1, value => value < 3 ? value + 1 : null).reversed();
+            expect(reversed.toArray()).toEqual([3, 2, 1]);
+            expect(reversed.size()).toBeLessThan(0);
         });
     });
 
@@ -473,6 +491,21 @@ describe("Sequence", () => {
         it("should return false if no element fulfills the provided predicate", () => {
             expect(Sequence.of("a", 1, true, {}).some(item => item instanceof Date))
                 .toBe(false);
+        });
+    });
+
+    describe("sorted", () => {
+        it("should sort by string representation when no comparator is provided", () => {
+            expect(Sequence.of(10, 2, 1).sorted().toArray()).toEqual([1, 10, 2]);
+        });
+
+        it("should sort with a comparator and retain size information", () => {
+            const sorted = Sequence.of(10, 2, 1).sorted((a, b) => a - b);
+            expect(sorted.toArray()).toEqual([1, 2, 10]);
+            expect(sorted.size()).toBe(3);
+
+            const unknownSize = Sequence.generate(3, value => value > 1 ? value - 1 : null);
+            expect(unknownSize.sorted((a, b) => a - b).size()).toBeLessThan(0);
         });
     });
 

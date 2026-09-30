@@ -3,9 +3,9 @@
 
     "target": "es6",
 
-    "module": "es6",
+    "module": "nodenext",
     "rootDir": "./",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "lib": ["esnext", "esnext.AsyncIterable"],
 
     "declaration": true,

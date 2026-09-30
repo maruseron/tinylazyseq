@@ -1,13 +1,12 @@
 # TinyLazySeq
 
-![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat&logo=jest) ![Branches](https://img.shields.io/badge/branches-98.46%25-brightgreen.svg?style=flat&logo=jest) ![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat&logo=jest) ![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat&logo=jest) *
-<font size="1">\* Currently only Sequence and Utils classes count with testing. AsyncSequence testing is a bit trickier, so it will take longer.</font>
+![Statements](https://img.shields.io/badge/statements-91.68%25-brightgreen.svg?style=flat&logo=jest) ![Branches](https://img.shields.io/badge/branches-84.54%25-yellow.svg?style=flat&logo=jest) ![Functions](https://img.shields.io/badge/functions-98.09%25-brightgreen.svg?style=flat&logo=jest) ![Lines](https://img.shields.io/badge/lines-96.25%25-brightgreen.svg?style=flat&logo=jest)
 
 Small ES6 library that provides generator-based lazy sequences, allowing functional intermediate operation composition computed on demand. For more information, [here is the documentation](https://maruseron.github.io/tinylazyseq/).
 
 ## Tiny note of warning:
 
-Although I couldn't find any errors before publishing this project, I have not intensely tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I'll publish a patch as soon as I can. This warning will stay here until I feel the library is perfectly safe _or_ I finally make a test suite for it.
+Although I couldn't find any errors before publishing this project, I have not extensively production-tested this library. As such, there is a slim chance you run into a bug. If so, please let me know and I'll publish a patch as soon as I can.
 
 ## Getting Started
 
@@ -19,25 +18,18 @@ npm install tinylazyseq
 
 ## New in This Version
 
-An instance method equivalent to the new `Map.groupBy` method in the [stage 4 array grouping proposal](https://github.com/tc39/proposal-array-grouping) has been added:
+First things first, I have finally finished `AsyncSequence`'s test suite, with full line coverage; the uncovered branches are direct results of transpilation.
 
-```typescript
-const seq = Sequence.of(
-    { name: "María", grade: 5.0 }, 
-    { name: "Juan" , grade: 6.5 }, 
-    { name: "Pedro", grade: 3.7 },
-    { name: "María", grade: 7.0 });
+In terms of API, the following new methods have been added, to stay up to date with the JavaScript Array API. I trust their names are descriptive enough:
+```ts
+// equivalent to Array.toSorted
+public sorted(): Sequence<T>;
+public sorted(compareFn: (a: T, b: T) => number): Sequence<T>;
 
-seq.groupBy(item => item.name);
-/* ^ Map {
-         "María" => [ { "name": "María", "grade": 7.0 }, { "name": "María", "grade": 5.0 }],
-         "Juan"  => [ { "name": "Juan" , "grade": 6.5 } ],
-         "Pedro" => [ { "name": "Pedro", "grade": 3.7 } ]
-     }
-*/
+// equivalent to Array.toReversed
+public reversed(): Sequence<T>;
 ```
-
-However, no equivalent to the `Object.groupBy` method in the same proposal made it to the project. I consider using Objects as Maps very bad practice: frequent dynamic addition of keys degrades property access performance heavily, so one should try to mutate anonymous objects as little as possible. As such, I decided against adding the method.
+<font size="1">Equivalents for ArraySequence have also been implemented.</font>
 
 ## Laziness
 
@@ -178,59 +170,65 @@ A full description of all methods can be found [here](https://maruseron.github.i
 
 The Sequence API is very similar to the Array API, so if you know how to use a functional approach with a JavaScript array, you pretty much already know how to use a Sequence. Here's a comparison table between Array and Sequence:
 
-| Method or property | Array            | Sequence                             |
-| ------------------ | ---------------- | ------------------------------------ |
-| length             | yes              | no\*                                 |
-| from               | yes              | yes                                  |
-| of                 | yes              | yes                                  |
-| at                 | yes              | no, but elementAt                    |
-| concat             | yes              | yes                                  |
-| contains           | no, but includes | yes                                  |
-| containsAll        | no               | yes                                  |
-| copyWithin         | yes              | no, immutable                        |
-| count              | no               | yes                                  |
-| drop               | no, but slice    | yes                                  |
-| dropWhile          | no               | yes                                  |
-| elementAt          | no, but at       | yes                                  |
-| entries            | yes              | no                                   |
-| every              | yes              | yes                                  |
-| fill               | yes              | no, immutable                        |
-| filter             | yes              | yes                                  |
-| find               | yes              | yes                                  |
-| findIndex          | yes              | yes                                  |
-| findLast           | no               | yes                                  |
-| findLastIndex      | no               | yes                                  |
-| first              | no               | yes                                  |
-| flat / flatten     | yes              | yes                                  |
-| flatMap            | yes              | yes                                  |
-| fold               | no, but reduce   | yes                                  |
-| forEach            | yes              | yes                                  |
-| includes           | yes              | no, but contains                     |
-| indexOf            | yes              | yes                                  |
-| isEmpty            | no               | yes                                  |
-| join               | yes              | yes                                  |
-| last               | no               | yes                                  |
-| lastIndexOf        | yes              | yes                                  |
-| map                | yes              | yes                                  |
-| pop                | yes              | no, immutable                        |
-| push               | yes              | no, immutable                        |
-| reduce             | yes              | yes                                  |
-| reduceRight        | yes              | no, can't be iterated backwards      |
-| reverse            | yes              | no, immutable                        |
-| shift              | yes              | no, immutable                        |
-| size               | no, but length   | yes, partially                       |
-| slice              | yes              | no, but drop and take                |
-| some               | yes              | yes                                  |
-| sort               | yes              | no, immutable                        |
-| splice             | yes              | no, immutable                        |
-| take               | no, but slice    | yes                                  |
-| takeWhile          | no               | yes                                  |
-| toLocaleString     | yes              | no                                   |
-| toString           | yes              | yes, but does not provide the values |
-| unshift            | yes              | no, immutable                        |
-| values             | yes              | no                                   |
-| Map.groupBy        | yes              | both: map static and instance method |
-| Object.groupBy     | yes              | only object static (discouraged)     |
+| Method or property | Array              | Sequence                             |
+| ------------------ | ------------------ | ------------------------------------ |
+| length             | yes                | no\*                                 |
+| from               | yes                | yes                                  |
+| of                 | yes                | yes                                  |
+| at                 | yes                | no, but elementAt                    |
+| concat             | yes                | yes                                  |
+| contains           | no, but includes   | yes                                  |
+| containsAll        | no                 | yes                                  |
+| copyWithin         | yes                | no, immutable                        |
+| count              | no                 | yes                                  |
+| drop               | no, but slice      | yes                                  |
+| dropWhile          | no                 | yes                                  |
+| elementAt          | no, but at         | yes                                  |
+| entries            | yes                | no                                   |
+| every              | yes                | yes                                  |
+| fill               | yes                | no, immutable                        |
+| filter             | yes                | yes                                  |
+| find               | yes                | yes                                  |
+| findIndex          | yes                | yes                                  |
+| findLast           | no                 | yes                                  |
+| findLastIndex      | no                 | yes                                  |
+| first              | no                 | yes                                  |
+| flat / flatten     | yes                | yes                                  |
+| flatMap            | yes                | yes                                  |
+| fold               | no, but reduce     | yes                                  |
+| forEach            | yes                | yes                                  |
+| includes           | yes                | no, but contains                     |
+| indexOf            | yes                | yes                                  |
+| isEmpty            | no                 | yes                                  |
+| join               | yes                | yes                                  |
+| last               | no                 | yes                                  |
+| lastIndexOf        | yes                | yes                                  |
+| map                | yes                | yes                                  |
+| pop                | yes                | no, immutable                        |
+| push               | yes                | no, immutable                        |
+| reduce             | yes                | yes                                  |
+| reduceRight        | yes                | no, can't be iterated backwards      |
+| reverse            | yes                | no, immutable                        |
+| reversed           | no, but toReversed | yes                                  |
+| shift              | yes                | no, immutable                        |
+| size               | no, but length     | yes, partially                       |
+| slice              | yes                | no, but drop and take                |
+| some               | yes                | yes                                  |
+| sort               | yes                | no, immutable                        |
+| sorted             | no, but toSorted   | yes                                  |
+| splice             | yes                | no, immutable                        |
+| take               | no, but slice      | yes                                  |
+| takeWhile          | no                 | yes                                  |
+| toLocaleString     | yes                | no                                   |
+| toReversed         | yes                | no, but reversed                     |
+| toSorted           | yes                | no, but sorted                       |
+| toSpliced          | yes                | no, but drop and take                |
+| toString           | yes                | yes, but does not provide the values |
+| unshift            | yes                | no, immutable                        |
+| values             | yes                | no                                   |
+| with               | yes                | no, no random access                 |
+| Map.groupBy        | yes                | both: map static and instance method |
+| Object.groupBy     | yes                | only object static (discouraged)     |
 
 <font size="1">\* since Sequences describe possibly unsized and/or infinite collections, it is impossible to have a length property. Instead, sequences try to infer the size of the underlying collection from their available information (eg. the collection implements size or length), providing the size if they do so succesfully, or an integer smaller than zero if the size is unknown.</font>
 
